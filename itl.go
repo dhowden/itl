@@ -137,10 +137,13 @@ type Track struct {
 	LibraryFolderCount int `plist:"Library Folder Count"`
 }
 
+// String returns a string representation of the Track.
 func (t *Track) String() string {
 	return t.Name
 }
 
+// GetString fetches the given string field in the Track, panics if field doesn't
+// exist.
 func (t Track) GetString(name string) string {
 	tt := reflect.TypeOf(t)
 	ft, ok := tt.FieldByName(name)
@@ -156,6 +159,7 @@ func (t Track) GetString(name string) string {
 	return f.String()
 }
 
+// GetInt fetches the given int field in the Track, panics if field doesn't exist.
 func (t Track) GetInt(name string) int {
 	tt := reflect.TypeOf(t)
 	ft, ok := tt.FieldByName(name)
@@ -171,7 +175,7 @@ func (t Track) GetInt(name string) int {
 	return int(f.Int())
 }
 
-// Playlist represents an iTunes playlist
+// Playlist represents an iTunes playlist.
 type Playlist struct {
 	Name                 string
 	Master               bool
@@ -182,7 +186,7 @@ type Playlist struct {
 	PlaylistItems        []PlaylistItem `plist:"Playlist Items"`
 }
 
-// PlaylistItem represents an individual track in a an iTunes playlist
+// PlaylistItem represents an individual track in a an iTunes playlist.
 type PlaylistItem struct {
 	TrackID int `plist:"Track ID"`
 }
