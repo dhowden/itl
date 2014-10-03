@@ -42,11 +42,11 @@ func (l *Library) Track(id string) (t Track, err error) {
 
 // Tracks retrieves a slice containing all of the tracks in the iTunes library
 func (l *Library) AllTracks() []Track {
-	result := make([]Track, 0, len(l.Tracks))
+	tracks := make([]Track, 0, len(l.Tracks))
 	for _, t := range l.Tracks {
-		result = append(result, t)
+		tracks = append(tracks, t)
 	}
-	return result
+	return tracks
 }
 
 // Track represents an iTunes library track, which is a media file which can either be music or video.
