@@ -7,6 +7,7 @@ package itl
 
 import (
 	"fmt"
+	"html"
 	"io"
 	"io/ioutil"
 	"reflect"
@@ -156,7 +157,7 @@ func (t Track) GetString(name string) string {
 
 	v := reflect.ValueOf(t)
 	f := v.FieldByName(name)
-	return f.String()
+	return html.UnescapeString(f.String())
 }
 
 // GetInt fetches the given int field in the Track, panics if field doesn't exist.
