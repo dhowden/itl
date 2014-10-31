@@ -176,6 +176,22 @@ func (t Track) GetInt(name string) int {
 	return int(f.Int())
 }
 
+// GetBool fetches the given bool field in the Track, panics if field doesn't exist.
+func (t Track) GetBool(name string) bool {
+	tt := reflect.TypeOf(t)
+	ft, ok := tt.FieldByName(name)
+	if !ok {
+		panic("invalid field")
+	}
+	if ft.Type.Kind() != reflect.Bool {
+		panic("field is not a bool")
+	}
+
+	v := reflect.ValueOf(t)
+	f := v.FieldByName(name)
+	return bool(f.Bool())
+}
+
 // Playlist represents an iTunes playlist.
 type Playlist struct {
 	Name                 string
