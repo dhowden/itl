@@ -6,11 +6,8 @@
 package itl
 
 import (
-	"fmt"
-	"html"
 	"io"
 	"io/ioutil"
-	"reflect"
 	"time"
 
 	"github.com/dhowden/plist"
@@ -141,55 +138,6 @@ type Track struct {
 // String returns a string representation of the Track.
 func (t *Track) String() string {
 	return t.Name
-}
-
-// GetString fetches the given string field in the Track, panics if field doesn't
-// exist.
-func (t Track) GetString(name string) string {
-	tt := reflect.TypeOf(t)
-	ft, ok := tt.FieldByName(name)
-	if !ok {
-		panic("invalid field")
-	}
-	if ft.Type.Kind() != reflect.String {
-		panic("field is not a string")
-	}
-
-	v := reflect.ValueOf(t)
-	f := v.FieldByName(name)
-	return html.UnescapeString(f.String())
-}
-
-// GetInt fetches the given int field in the Track, panics if field doesn't exist.
-func (t Track) GetInt(name string) int {
-	tt := reflect.TypeOf(t)
-	ft, ok := tt.FieldByName(name)
-	if !ok {
-		panic("invalid field")
-	}
-	if ft.Type.Kind() != reflect.Int {
-		panic("field is not an int")
-	}
-
-	v := reflect.ValueOf(t)
-	f := v.FieldByName(name)
-	return int(f.Int())
-}
-
-// GetBool fetches the given bool field in the Track, panics if field doesn't exist.
-func (t Track) GetBool(name string) bool {
-	tt := reflect.TypeOf(t)
-	ft, ok := tt.FieldByName(name)
-	if !ok {
-		panic("invalid field")
-	}
-	if ft.Type.Kind() != reflect.Bool {
-		panic("field is not a bool")
-	}
-
-	v := reflect.ValueOf(t)
-	f := v.FieldByName(name)
-	return bool(f.Bool())
 }
 
 // Playlist represents an iTunes playlist.
