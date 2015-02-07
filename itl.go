@@ -28,25 +28,6 @@ type Library struct {
 	Playlists           []Playlist
 }
 
-// Track retrieves the library track for the given id, or error if no such
-// track exists.
-func (l *Library) Track(id string) (t Track, err error) {
-	t, ok := l.Tracks[id]
-	if !ok {
-		err = fmt.Errorf("no track with id: %v", id)
-	}
-	return
-}
-
-// Tracks retrieves a slice containing all of the tracks in the iTunes library
-func (l *Library) AllTracks() []Track {
-	tracks := make([]Track, 0, len(l.Tracks))
-	for _, t := range l.Tracks {
-		tracks = append(tracks, t)
-	}
-	return tracks
-}
-
 // Track represents an iTunes library track, which is a media file which can either be music or video.
 // Items are identified in iTunes using the TrackID.
 type Track struct {
@@ -133,11 +114,6 @@ type Track struct {
 
 	FileFolderCount    int `plist:"File Folder Count"`
 	LibraryFolderCount int `plist:"Library Folder Count"`
-}
-
-// String returns a string representation of the Track.
-func (t *Track) String() string {
-	return t.Name
 }
 
 // Playlist represents an iTunes playlist.
