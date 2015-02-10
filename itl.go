@@ -133,7 +133,7 @@ type PlaylistItem struct {
 }
 
 // ReadFromXML reads iTunes XML (plist) data from the underlying io.Reader
-// and returns a Library struct.
+// returning the resuling Library.
 func ReadFromXML(r io.Reader) (l Library, err error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
