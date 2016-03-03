@@ -54,11 +54,13 @@ type Track struct {
 	Rating         int
 	RatingComputed bool `plist:"Rating Computed"`
 	Disabled       bool
+	Loved          bool `plist:"Loved"`
 
 	Album               string
 	AlbumArtist         string `plist:"Album Artist"`
 	AlbumRating         int    `plist:"Album Rating"`
 	AlbumRatingComputed bool   `plist:"Album Rating Computed"`
+	AlbumLoved          bool   `plist:"Album Loved"`
 
 	SortName        string `plist:"Sort Name"`
 	SortArtist      string `plist:"Sort Artist"`
@@ -121,9 +123,18 @@ type Playlist struct {
 	Name                 string
 	Master               bool
 	PlaylistID           int    `plist:"Playlist ID"`
+	ParentPersistentID   string `plist:"Parent Persistent ID"`
 	PlaylistPersistentID string `plist:"Playlist Persistent ID"`
+	DistinguishedKind    int    `plist:"Distinguished Kind"`
 	Visible              bool
-	AllItems             bool           `plist:"All Items"`
+	Music                bool
+	Movies               bool
+	TVShows              bool `plist:"TV Shows"`
+	Podcasts             bool
+	ITunesU              bool `plist:"iTunesU"`
+	Audiobooks           bool
+	AllItems             bool `plist:"All Items"`
+	Folder               bool
 	PlaylistItems        []PlaylistItem `plist:"Playlist Items"`
 }
 
